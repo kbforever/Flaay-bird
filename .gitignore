@@ -13,6 +13,7 @@
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+*.meta
  
 # Unity3D生成的文件
 *.csproj
