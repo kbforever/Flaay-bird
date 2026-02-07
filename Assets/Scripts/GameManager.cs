@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,10 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     GameCoreManager coreManager;
+
+    public Action<bool> IsStartGame;
+
+    
 
     private void Awake()
     {
@@ -26,9 +31,9 @@ public class GameManager : Singleton<GameManager>
         coreManager.Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameOver()
     {
-        
+        Debug.LogError("Game Over");
+        Time.timeScale = 0f;
     }
 }

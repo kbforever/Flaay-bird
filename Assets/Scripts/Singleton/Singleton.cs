@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T:Singleton<T>
 {
     private static T instance;
+
+    private static bool applicationIsQuitting = false;
+
     public static T Instance 
     {
         get
         {
             if (instance == null)
             {
+                if (applicationIsQuitting) return instance;
                 instance = FindObjectOfType<T>();
                 if (instance == null)
                 {
@@ -37,16 +42,8 @@ public class Singleton<T> : MonoBehaviour where T:Singleton<T>
             Destroy(gameObject);
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnDestroy()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        applicationIsQuitting = true;
     }
 }
